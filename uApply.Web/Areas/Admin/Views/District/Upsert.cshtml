@@ -1,0 +1,33 @@
+﻿@model uApply.Data.Models.Location.District
+
+@{
+
+    var title = Model.Id == 0 ? "Add" : "Update";
+}
+
+<div class="card shadow m-5">
+
+    <div class="card-header">
+           <p class="text-center text-dark m-0 font-weight-bold">Add District</p>
+    </div>
+    <div class="card-body">
+        <form method="post">
+            <div class="form-row mb-3">                    
+                <div class="col-5">
+                     <label asp-for="Name" class="text-muted"></label>
+                </div>
+                 <div class="col-7">
+                    <input asp-for="Name" type="text" class="form-control" />
+                </div>
+
+            </div>
+        
+            <div class="form-row">
+                <button type="submit" class="btn btn-dark btn-block text-white">@title</button>
+
+            </div>     
+    </form>    
+
+    </div>
+</div>
+    

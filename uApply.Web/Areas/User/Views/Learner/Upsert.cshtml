@@ -1,0 +1,234 @@
+﻿@using uApply.Data.Models.Location
+@model LearnerViewModel
+@{
+    var title = Model.Learner.Id == 0 ? "Adding Learner" : "Updating Learner";
+}
+
+
+ <h3 class="align-content-center text-dark">@title</h3>
+
+ <div class="container">
+
+         <div class="card shadow my-3">
+            <div class="card-header py-3">
+                <p class="text-center text-dark m-0 font-weight-bold">@title</p>
+            </div>
+            <form  method="post">
+                <div class="card-body">
+                    <input type="hidden" asp-for="Learner.Id"  />     
+                    <input type="hidden" asp-for="Learner.ParentId"  />     
+                    <div asp-validation-summary=ModelOnly></div>
+        
+                    <h4 class="text-dark text-center text-uppercase mb-3">Personal Details</h4>
+                                
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label asp-for="Learner.FullNames" class="text-muted"></label>
+                                <input  asp-for="Learner.FullNames" type="text" class="form-control" />     
+                                <span asp-validation-for="Learner.FullNames" class="text-danger"></span>
+                            </div>
+                            <div class="invalid-feedback">
+                                Please provide a valid zip.
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label asp-for="Learner.Surname" class="text-muted"></label>
+                                <input asp-for="Learner.Surname" type="text" class="form-control" />
+                                <span asp-validation-for="Learner.Surname" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>                   
+                    <div class="form-row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="Learner.Title" class="text-muted"></label>
+                                  @Html.DropDownListFor( c => c.Learner.TitleId, Model.Titles, "-- Select Title --",
+                                    new {@class = "form-control"})
+                                <span asp-validation-for="Learner.TitleId" class="text-danger"></span>                                
+                            </div>
+                            <div class="invalid-feedback">
+                                Please provide a valid zip.
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="Learner.Gender" class="text-muted"></label>
+                                @Html.DropDownListFor( c => c.Learner.GenderId, Model.Genders, "-- Select Gender --",
+                                    new {@class = "form-control"})
+                                    <span asp-validation-for="Learner.GenderId" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label asp-for="Learner.Nationality" class="text-muted"></label>                                
+                                @Html.DropDownListFor( c => c.Learner.NationalityId, Model.Nationalities, "-- Select Nationality --",
+                                    new {@class = "form-control"})
+                                <span asp-validation-for="Learner.NationalityId" class="text-danger"></span>
+                            </div>
+                            <div class="invalid-feedback">
+                                Please provide a valid zip.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label asp-for="Learner.IdNumber" class="text-muted"></label>
+                                <input asp-for="Learner.IdNumber" type="text" class="form-control" />   
+                                <span asp-validation-for="Learner.IdNumber" class="text-danger"></span>                                
+                                
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label asp-for="Learner.Language" class="text-muted"></label>
+                                
+                                @Html.DropDownListFor( c => c.Learner.LanguageId, Model.Languages, "-- Select Home Language --",
+                                    new {@class = "form-control"})
+                                <span asp-validation-for="Learner.LanguageId" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="Learner.Race" class="text-muted"></label>
+                                @Html.DropDownListFor( c => c.Learner.RaceId, Model.Races, "-- Select Race --",
+                                    new {@class = "form-control"})
+                                <span asp-validation-for="Learner.RaceId" class="text-danger"></span>
+                            </div>
+                            <div class="invalid-feedback">
+                                Please provide a valid zip.
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="form-row">
+                        <div class="col form-check">
+                            <div class="form-check form-group">
+                              <input asp-for="Learner.IsDisabled" class="form-check-input" type="checkbox"/>
+                              <label asp-for="Learner.IsDisabled" class="form-check-label" ></label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                   
+                 @*   <div class="form-row">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="language" class="text-muted"><strong>Proof of ID</strong></label>
+                                <input type="file" class="" id="language" 
+                                        />
+        
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="language" class="text-muted"><strong>Proof of Address</strong></label>
+                                <input type="file" class="" id="language" 
+                                        />
+        
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+                    *@
+        
+                    <hr/>
+                    <h4 class="text-dark text-center text-uppercase mb-3">Residential Address</h4>
+                    
+                   <div class="form-row">
+        
+                        <div class="col-6">
+                            <div class="form-group">
+        
+                                <label asp-for="Learner.StreetAddress" class="text-muted"><strong>Street</strong></label>
+                                <input asp-for="Learner.StreetAddress" type="text" class="form-control mb-3"/>
+                                 <span asp-validation-for="Learner.StreetAddress" class="text-danger"></span>
+                                
+                            </div>
+                    
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                               <div class="form-group">
+                                <label asp-for="Learner.Surburb" class="text-muted"><strong>Suburb</strong></label>
+                                <input asp-for="Learner.Surburb" type="text" class="form-control mb-3"/>
+                                <span asp-validation-for="Learner.Surburb" class="text-danger"></span>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    
+                    <div class="form-row">
+                     
+                        <div class="col-4">
+                            <label  class="text-muted">District</label>
+                            @Html.DropDownListFor( c => c.District.Id, Model.Districts, "-- Select District --",
+                                    new {@class = "form-control", @onchange = "onDistrictChange()"})   
+                        </div>
+
+                          <div class="col-4">
+                            <label asp-for="Learner.Town" class="text-muted"></label>
+                            @Html.DropDownListFor( c => c.Learner.TownId, Model.Towns, "-- Select Town --",
+                                    new {@class = "form-control"})  
+                                    <span asp-validation-for="Learner.TownId" class="text-danger"></span><span asp-validation-for="Learner.GenderId" class="text-danger"></span>
+                        </div>
+                     
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label asp-for="Learner.PostalCode" class="text-muted"><strong>Postal Code</strong></label>
+                                <input asp-for="Learner.PostalCode" type="text" class="form-control"/>
+                                <span asp-validation-for="Learner.PostalCode" class="text-danger"></span>
+                            </div>    
+                        </div>
+                        
+                    </div>
+        
+                    <div class="form-row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="province" class="text-muted"><strong>Province</strong></label>
+                                <input type="text" value="Free State" placeholder="Free State" disabled class="form-control" id="province"/>
+                            </div>
+                        </div>
+                    </div> 
+                    
+                    <hr>
+                    <h4 class="text-dark text-center text-uppercase mb-3">Contact Details</h4>
+                    
+                    <div class="form-row">
+                        
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label asp-for="Learner.PhoneNumber" class="text-muted"></label>
+                                <input asp-for="Learner.PhoneNumber" type="text" class="form-control" />
+                                <span asp-validation-for="Learner.PhoneNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+                        @*<div class="col">
+                            <div class="form-group">
+                                <label for="confirm_email" class="text-muted"><strong>Confirm Email</strong></label>
+                                <input type="email" class="form-control" id="confirm_email"/>
+                            </div>
+                        </div>*@
+                    </div>
+                
+                    <!-- Card Footer -->
+                    <hr />
+                    <div class="">
+                        <button type="submit" class="btn btn-dark btn-block"><i class="fa fa-user-plus"></i> @title </button>
+                    </div>
+                </div>
+                </form>
+        </div>
+        
+    </div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial"/>
+    <script src="~/js/learners.js"></script>
+}

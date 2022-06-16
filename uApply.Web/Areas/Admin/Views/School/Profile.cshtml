@@ -1,0 +1,131 @@
+﻿@model uApply.Utils.ViewModels.EducationVM.SchoolViewModel
+@{
+    var applications = Model.Applications;
+}
+
+ <h3 class="text-center text-uppercase text-muted my-5">School Profile</h3>
+<div class="shadow card mb-2">
+    <div class="row profile-wrapper p-2">
+    <div class="col-md-3 d-flex justify-content-center align-content-center">
+        <i class="icon ion-md-person mr-2" style="font-size: 100px;"></i>
+    </div>
+    <div class="col-md-6">
+        <p>School Name: @Model.School.Name</p>
+        <p>Emis Number: @Model.School.EmisNumber</p>
+        <p>Town: @Model.School.Town.Name</p>        
+        <p>School Level: @Model.School.SchoolLevel.Name</p>        
+    </div>
+    <div class="col-md-3 d-flex justify-content-end">
+        <a asp-area="Admin" asp-controller="School" asp-action="Upsert" asp-route-id="@Model.School.Id">
+        <i class="icon ion-md-create mr-2" style="font-size: 30px;"></i>
+        </a>
+    </div>
+    </div>
+</div>
+
+<div class="row my-4">
+    <div class="col-3">
+
+        <div class="card shadow p-3 bg-dark text-info d-flex align-items-center justify-content-center">
+            <p class="font-weight-bold m-0"> <i class="icon ion-md-document mr-2"></i> Total Applications</p>
+            <p class="font-weight-bold mt-1">@(applications != null? applications.ToList().Count : 0)</p>
+        </div>
+
+    </div>
+    <div class="col-3">
+
+        <div class="card shadow p-3 bg-dark text-warning d-flex align-items-center justify-content-center">
+            <p class="font-weight-bold m-0"> <i class="icon ion-md-document mr-2"></i> Not Attended</p>
+            <p class="font-weight-bold mt-1">@(applications != null ? applications.Where(s => s.StatusId == 2).ToList().Count : 0 )</p>
+        </div>
+
+    </div>
+    
+    <div class="col-3">
+
+        <div class="card shadow p-3 bg-dark text-success d-flex align-items-center justify-content-center">
+            <p class="font-weight-bold m-0"> <i class="icon ion-md-document mr-2"></i> Accepted</p>
+            <p class="font-weight-bold mt-1">@(applications != null ? applications.Where(s => s.StatusId == 3).ToList().Count : 0)</p>
+        </div>
+
+    </div>
+    
+    <div class="col-3">
+
+        <div class="card shadow p-3 bg-dark text-danger d-flex align-items-center justify-content-center">
+            <p class="font-weight-bold m-0"> <i class="icon ion-md-document mr-2"></i> Rejected</p>
+            <p class="font-weight-bold mt-1">@( applications != null ? applications.Where(s => s.StatusId == 4).ToList().Count : 0)</p>
+        </div>
+
+    </div>
+</div>    
+
+
+@if(applications != null)
+{
+    <div class="card shadow p-3">
+        <table id="learnerTable" data-parent-id="@Model.School.Id" class="table table-striped table-bordered shadow" style="width:100%">
+            <thead class="thead-dark">
+                <tr class="table-info">
+                    <th>ID</th>                    
+                    <th>Learner Name</th>                    
+                    <th>Grade Applied</th>
+                    <th>Application Status</th>
+                    <th>Date Applied</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var application in applications)
+                {
+                    <tr>
+                        <td>@application.Id</td>
+                        <td>@application.Learner.FullNames @application.Learner.Surname</td>                        
+                        <td>@application.Grade.Name</td>                        
+                        <td>@application.Status.Name</td>                        
+                        <td>@application.Created.ToString()</td>                        
+                        
+                       <td class="d-flex justify-content-center">
+                            @*<a asp-area="Admin" asp-controller="Grade" asp-action="Upsert" asp-route-id="@grade.Id"  class="text-dark" style="font-size: 25px">
+                                <i class="icon ion-md-create mr-5"></i>
+                            </a>
+*@
+                            <a asp-action="LearnerApplicationView" asp-route-applicationId="@application.Id" class="text-success" style="font-size: 25px">
+                                <i class="icon ion-md-eye mr-5"></i>
+                            </a>
+                            
+                            @*<a onclick="Delete(`/Admin/School/Delete/${@grade.Id}`)" class="text-danger" style="font-size: 25px">
+                                <i class="icon ion-md-close-circle mr-5"></i>
+                            </a>*@
+                       </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <h4 class="text-center text-danger">No Applications</h4>
+}
+
+@if (ViewBag.JavaScriptFunction != null)
+{
+    <script type="text/javascript">
+        function setLoggedUser(userId, role, username, profile){
+
+            var user = {
+                userId: userId,
+                role: role,
+                username: username,
+                profile: profile 
+            }
+
+            localStorage.setItem("loggedUser", JSON.stringify(user));
+
+        }
+
+        @Html.Raw(ViewBag.JavaScriptFunction)
+    </script>
+
+}

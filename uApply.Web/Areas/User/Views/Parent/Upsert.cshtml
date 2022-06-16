@@ -1,0 +1,243 @@
+﻿@model uApply.Utils.ViewModels.UserVM.ParentViewModel
+-ViewModel
+@{
+    var title = Model.Parent.Id == 0 ? "Register" : "Update";
+}
+
+ <div class="container">
+
+         <div class="card shadow my-3">
+            <div class="card-header py-3">
+                <p class="text-center text-dark m-0 font-weight-bold">User Registration</p>
+            </div>
+            <form  method="post">
+                <div class="card-body">
+                    <input type="hidden" asp-for="Parent.Id"  />     
+
+                    <h4 class="text-info text-center text-uppercase mb-3">Personal Details</h4>
+                                
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label asp-for="Parent.FullNames" class="text-muted"></label>
+                                <input  asp-for="Parent.FullNames" type="text" class="form-control" />  
+                                <span asp-validation-for="Parent.FullNames" class="text-danger"></span>
+                            </div>
+                            <div class="invalid-feedback">
+                                Please provide a valid zip.
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label asp-for="Parent.Surname" class="text-muted"></label>
+                                <input asp-for="Parent.Surname" type="text" class="form-control" />
+                                <span asp-validation-for="Parent.Surname" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>                   
+                    <div class="form-row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="Parent.Title" class="text-muted"></label>
+                                  @Html.DropDownListFor( c => c.Parent.TitleId, Model.Titles, "-- Select Title --",
+                                    new {@class = "form-control"})
+                                     <span asp-validation-for="Parent.TitleId" class="text-danger"></span>
+                            </div>
+                            <div class="invalid-feedback">
+                                Please provide a valid zip.
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="Parent.Gender" class="text-muted"></label>
+                                @Html.DropDownListFor( c => c.Parent.GenderId, Model.Genders, "-- Select Gender --",
+                                    new {@class = "form-control"})
+                                     <span asp-validation-for="Parent.GenderId" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label asp-for="Parent.Nationality" class="text-muted"></label>                                
+                                @Html.DropDownListFor( c => c.Parent.NationalityId, Model.Nationalities, "-- Select Nationality --",
+                                    new {@class = "form-control"})
+                                 <span asp-validation-for="Parent.NationalityId" class="text-danger"></span>
+                            </div>
+                            <div class="invalid-feedback">
+                                Please provide a valid zip.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label asp-for="Parent.IdNumber" class="text-muted"></label>
+                                <input asp-for="Parent.IdNumber" type="text" class="form-control" />    
+                                 <span asp-validation-for="Parent.IdNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="Parent.Race" class="text-muted"></label>
+                                @Html.DropDownListFor( c => c.Parent.RaceId, Model.Races, "-- Select Race --",
+                                    new {@class = "form-control"})
+                                 <span asp-validation-for="Parent.RaceId" class="text-danger"></span>
+                            </div>
+                            <div class="invalid-feedback">
+                                Please provide a valid zip.
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="form-row">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label asp-for="Parent.Language" class="text-muted"></label>
+                                <label asp-for="Parent.Race" class="text-muted"></label>
+                                @Html.DropDownListFor( c => c.Parent.LanguageId, Model.Languages, "-- Select Home Language --",
+                                    new {@class = "form-control"})
+                                     <span asp-validation-for="Parent.LanguageId" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                   
+                 @*   <div class="form-row">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="language" class="text-muted"><strong>Proof of ID</strong></label>
+                                <input type="file" class="" id="language" 
+                                        />
+        
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="language" class="text-muted"><strong>Proof of Address</strong></label>
+                                <input type="file" class="" id="language" 
+                                        />
+        
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+        
+                  @*  <h4 class="text-info text-center text-uppercase mb-3">Residential Address</h4>
+                    
+                   <div class="form-row">
+        
+                        <div class="col-6">
+                            <div class="form-group">
+        
+                                <label for="street" class="text-muted"><strong>Street</strong></label>
+                                <input type="text" class="form-control mb-3" id="street"
+                                        />
+                                
+                            </div>
+                    
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="complex" class="text-muted"><strong>Building/Complex</strong></label>
+                                <input type="text" class="form-control mb-3" id="complex"
+                                        />
+                        
+                            </div>
+                        </div>
+                    </div>
+        
+                    
+                    <div class="form-row">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="suburb" class="text-muted"><strong>Suburb</strong></label>
+                                <input type="text" class="form-control mb-3" id="suburb"
+                                        />
+                            </div>
+                        </div>
+        
+                        <div class="col-4">
+                            <label for="town" class="text-muted"><strong>City/Town</strong></label>
+                            <input type="text" class="form-control mb-3" id="town"
+                                    />    
+                        </div>
+                        
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="postal" class="text-muted"><strong>Postal Code</strong></label>
+                                <input type="text" class="form-control" id="postal"
+                                        />
+                            </div>    
+                        </div>
+                        
+                    </div>
+        
+                    <div class="form-row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="province" class="text-muted"><strong>Province</strong></label>
+                                <input type="text" placeholder="Free State" disabled class="form-control" id="province"
+                                        />
+                            </div>
+                        </div>
+                    </div> 
+                    *@
+                    <hr>
+                    <h4 class="text-info text-center text-uppercase mb-3">Contact Details</h4>
+                    
+                    <div class="form-row">
+                        
+                        <div class="col">
+                            <div class="form-group">
+                                <label asp-for="Parent.Email" class="text-muted"></label>
+                                <input asp-for="Parent.Email" type="text" class="form-control" />
+                                 <span asp-validation-for="Parent.Email" class="text-danger"></span>
+                            </div>
+                        </div>
+                        @*<div class="col">
+                            <div class="form-group">
+                                <label for="confirm_email" class="text-muted"><strong>Confirm Email</strong></label>
+                                <input type="email" class="form-control" id="confirm_email"/>
+                            </div>
+                        </div>*@
+                    </div>
+        
+                    <div class="form-row">
+                        
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label asp-for="Parent.PhoneNumber" class="text-muted"></label>
+                                <input asp-for="Parent.PhoneNumber" type="text" class="form-control" />
+                                 <span asp-validation-for="Parent.PhoneNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label asp-for="Parent.Password" class="text-muted"></label>
+                                <input asp-for="Parent.Password" type="text" class="form-control" />
+                                 <span asp-validation-for="Parent.Password" class="text-danger"></span>
+                            </div>
+                        </div>
+                        @*<div class="col">
+                            <div class="form-group">
+                                <label for="confirm_password" class="text-muted"><strong>Confirm Password</strong></label>
+                                <input type="password" class="form-control" id="confirm_password"
+                                        />
+                            </div>
+                        </div>*@
+                    </div>                   
+                </div>
+                <!-- Card Footer -->
+                <div class="card-footer m-0">
+                    <button type="submit" class="btn btn-dark btn-block"><i class="fa fa-user-plus"></i> @title User</button>
+                </div>
+                </form>
+        </div>
+        
+    </div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial"/>
+}

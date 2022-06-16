@@ -1,0 +1,42 @@
+﻿@model uApply.Utils.ViewModels.UserVM.LoginViewModel
+@{
+}
+ <div class="card shadow p-4" style="width: 500px; margin: 15px auto;">
+            <h3 class="text-center text-muted font-weight-bold mb-3">Login</h3>
+                <span id="invalidLogin" style="display: none; border-radius: 5px;" class="text-white text-center bg-danger mb-4 p-1">Invalid email or password</span>
+            <form method="post" class="form-group px-4">
+                <div asp-validation-summary=ModelOnly></div>
+
+                 <span asp-validation-for="Email" class="text-danger"></span>
+                <input asp-for="Email" class="form-control mb-3" placeholder="Email"/>
+                 
+                <span asp-validation-for="Password" class="text-danger"></span>
+                <input asp-for="Password" type="password" class="form-control mb-3" placeholder="Password"/>
+
+               
+                <button type="submit" class="btn btn-dark btn-block login"> <ion-icon name="log-in-outline"></ion-icon> Login</button>
+            </form>
+
+            <a class="text-center text-muted register">Do you have account? Register now</a>
+</div>
+
+@section Scripts{
+
+    <partial src="_ValidationScriptsPartial"></partial>
+
+}
+
+@if (ViewBag.JavaScriptFunction != null)
+{
+    <script type="text/javascript">
+        function showToast(message, success){
+            if(!success){  
+                document.getElementById('invalidLogin').style.display = "block";           
+            }
+            
+        }
+
+        @Html.Raw(ViewBag.JavaScriptFunction)
+    </script>
+
+}

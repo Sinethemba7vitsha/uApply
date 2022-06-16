@@ -1,0 +1,50 @@
+﻿@model IEnumerable<uApply.Data.Models.Education.School>
+@{
+}
+<h3 class="text-center text-dark mt-3"><i class="icon ion-md-people mr-2"></i> Schools Home Page</h3>
+
+<div class="d-flex justify-content-end my-5">
+    <a  class="btn btn-dark text-white shadow"  asp-area="Admin" asp-controller="School" asp-action="Upsert">
+        <i class="icon ion-md-add-circle mr-2"></i> Add New School
+    </a>
+</div>
+
+
+<div class="card shadow p-3">
+    <table id="schoolTable" data-parent-id="1" class="table table-striped table-bordered shadow" style="width:100%">
+    <thead class="thead-dark">
+        <tr class="table-info">
+            <th>School Name</th>
+            <th>Emis Number</th>
+            <th>Town</th>
+            <th>School Level</th>           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var school in Model)
+        {
+            <tr>
+                <td>@school.Name</td>
+                <td>@school.EmisNumber</td>
+                <td>@school.Town.Name</td>
+                <td>@school.SchoolLevel.Name</td>                
+                <td class="d-flex justify-content-around">
+                    <a  asp-area="Admin" asp-controller="School" asp-action="Upsert" asp-route-id="@school.Id"  class="text-dark">
+                        <i class="icon ion-md-create mr-2"></i>
+                    </a>
+               
+                    <a class="text-dark" asp-area="Admin" asp-controller="School" asp-action="Profile" asp-route-id="@school.Id">
+                        <i class="icon ion-md-person mr-2"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody style="font-family: arial, Helvetica, sans-serif">
+</table>
+
+</div>
+
+@*@section Scripts{
+    <script src="~/js/parent.js"></script>
+}*@

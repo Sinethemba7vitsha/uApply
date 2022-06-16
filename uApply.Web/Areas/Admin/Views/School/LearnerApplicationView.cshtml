@@ -1,0 +1,35 @@
+﻿@model SchoolApplication
+@{
+}
+
+<div class="card shadow mt-5">
+    <div class="card-header py-3">
+            <p class="text-center text-dark m-0 font-weight-bold">Application Details</p>
+    </div>   
+    
+    <table class="table table-striped table-bordered ">
+        <tbody >
+            <tr>
+                <th>Full Names</th>
+                <td>@Model.Learner.FullNames</td>
+            </tr>
+            <tr>
+                <th>Surname</th>
+                <td>@Model.Learner.Surname</td>
+            </tr>
+             <tr>
+                <th>ID Number</th>
+                <td>@Model.Learner.IdNumber</td>
+            </tr>
+            <tr>
+                <th>Grade Applied For</th>
+                <td>@Model.Grade.Name</td>
+            </tr>
+            <tr>
+                <th>Application Status</th>
+                <td>@Model.Status.Name</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

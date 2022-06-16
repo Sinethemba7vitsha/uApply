@@ -1,0 +1,63 @@
+﻿@model uApply.Utils.ViewModels.EducationVM.SchoolApplicationViewModel
+@{
+    
+}
+
+ <div class="container">
+
+         <div class="card shadow my-3">
+            <div class="card-header py-3">
+                <p class="text-center text-dark m-0 font-weight-bold">Learner Application</p>
+            </div>
+            <form  method="post">
+                <div class="card-body">
+                    <input type="hidden" asp-for="SchoolApplication.Id"  />     
+                    <input type="hidden" asp-for="SchoolApplication.LearnerId"  />     
+                    <input type="hidden" asp-for="ParentId"  />     
+                     
+                            
+                    <div class="form-group">
+                                <label  class="text-muted">District</label>
+                                @Html.DropDownListFor( c => c.District.Id, Model.Districts, "-- Select District --",
+                                    new {@class = "form-control",  @onchange = "onDistrictChanged()"})
+                    </div>
+
+                   <div class="form-group">
+                               <label asp-for="Town" class="text-muted">Town</label>
+                                @Html.DropDownListFor( c => c.Town.Id, Model.Towns, "-- Select Town --",
+                                    new {@class = "form-control", @onchange = "onTownChanged()", @disabled = ""})   
+                   </div>                          
+                                          
+                    <div class="form-group">
+                        <label asp-for="SchoolLevel" class="text-muted"></label>
+                           @Html.DropDownListFor( c => c.SchoolLevel.Id, Model.SchoolLevels, "-- Select School Level --",
+                                new {@class = "form-control", @onchange = "onSchoolLevelChanged()"})                                
+                    </div>
+                    
+                    <div class="form-group">
+                        <label asp-for="SchoolApplication.School" class="text-muted"></label>
+                           @Html.DropDownListFor( c => c.SchoolApplication.SchoolId, Model.Schools, "-- Select School --",
+                                new {@class = "form-control", @onchange = "onSchoolChanged()", @disabled = ""})                                
+                    </div>
+
+                    <div class="form-group">
+                                <label asp-for="SchoolApplication.Grade" class="text-muted"></label>
+                                @Html.DropDownListFor( c => c.SchoolApplication.GradeId, Model.Grades, "-- Select Grade --",
+                                    new {@class = "form-control", @disabled = ""})
+                    </div>                         
+                                  
+                                                                           
+                <!-- Card Footer -->
+                <div class="card-footer m-0">
+                    <button type="submit" class="btn btn-dark btn-block"><i class="fa fa-user-plus"></i>Submit Application</button>
+                </div>
+                </div>
+             </form>
+        </div>
+        
+    </div>
+
+    @section Scripts{
+        <script src="~/js/dropdowns.js"></script>
+        <partial name="_ValidationScriptsPartial"/>
+    }

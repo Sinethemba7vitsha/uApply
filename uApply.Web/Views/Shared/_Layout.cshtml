@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - uApply.Web</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-light bg-dark sticky-top shadow">
+              <div class="container">
+                <a class="navbar-brand text-white" asp-area="Home" asp-controller="Home" asp-action="Index">
+                  <i class="icon ion-md-aperture"></i> uApply 
+                </a>
+   
+                <ul class="nav justify-content-end">
+                    <li>
+                        <a class="nav-link text-white nav-link-hover mr-2" asp-area="Home" asp-controller="Home" asp-action="Index">
+                          <i class="icon ion-md-home mr-2"></i>Home
+                        </a>
+                    </li>
+                    <li id="districtLink" style="display: none">
+                        <a class="nav-link text-white nav-link-hover mr-2" asp-area="Admin" asp-controller="District" asp-action="Index">
+                          <i class="icon ion-md-business mr-2"></i>Districts                        
+                        </a>
+                    </li>
+                    <li id="townsLink" style="display: none">
+                        <a class="nav-link text-white nav-link-hover mr-2" asp-area="Admin" asp-controller="Town" asp-action="Index">
+                          <i class="icon ion-md-business mr-2"></i> Towns
+                        </a>
+                    </li>   
+                    <li id="parentsLink" style="display: none">
+                        <a class="nav-link text-white nav-link-hover mr-2" asp-area="User" asp-controller="Parent" asp-action="Index">
+                          <i class="icon ion-md-people mr-2"></i>  Parents
+                        </a>
+                    </li>
+                    <li id="schoolsLink" style="display: none">
+                        <a class="nav-link text-white nav-link-hover mr-2" asp-area="Admin" asp-controller="School" asp-action="Index">
+                          <i class="icon ion-md-school mr-2"></i>  Schools
+                        </a>
+                    </li>
+                    
+                    <li id="loginLink">
+                        <a asp-area="User" asp-controller="Account" asp-action="Login" class="nav-link text-white nav-link-hover mr-2">
+                          <i class="icon ion-md-log-in mr-2"></i>Login
+                        </a>
+                    </li>
+                    <li id="registerLink">
+                        <a asp-area="User" asp-controller="Account" asp-action="Index" class="nav-link text-white btn btn-success">
+                          <i class="icon ion-md-book mr-2"></i>Register
+                        </a>
+                    </li>
+                    <li id="loggedUser" style="display: none; cursor: pointer;">
+                        <a class="nav-link text-white">
+                          <i class="icon ion-md-person mr-2"></i> <span>Username</span>
+                        </a>
+                    </li>
+                    <li id="logout" style="display: none">
+                        <a class="nav-link text-white" onclick="logout()">
+                          <i class="icon ion-md-log-out mr-2"></i> Logout
+                        </a>
+                    </li>
+                </ul>
+ 
+              </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - uApply.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

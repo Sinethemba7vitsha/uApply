@@ -1,0 +1,239 @@
+﻿@model uApply.Utils.ViewModels.EducationVM.SchoolViewModel
+@{
+    var title = Model.School.Id == 0 ? "Add" : "Update";
+}
+
+ <div class="container">
+
+         <div class="card shadow my-3">
+            <div class="card-header py-3">
+                <p class="text-center text-dark m-0 font-weight-bold">Registering School</p>
+            </div>
+            <form  method="post">
+                <div class="card-body">
+                    <input type="hidden" asp-for="School.Id"  />     
+            
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label asp-for="School.Name" class="text-muted"></label>
+                                <input  asp-for="School.Name" type="text" class="form-control" />     
+                            </div>
+                            <div class="invalid-feedback">
+                                Please provide a valid zip.
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label asp-for="School.EmisNumber" class="text-muted"></label>
+                                <input asp-for="School.EmisNumber" type="text" class="form-control" />
+                            </div>
+                        </div>
+                    </div>                   
+                    <div class="form-row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="District" class="text-muted"></label>
+                                  @Html.DropDownListFor( c => c.District.Id, Model.Districts, "-- Select District --",
+                                    new {@class = "form-control", @onchange = "onDistrictChange()"})
+                                
+                            </div>
+
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="School.Town" class="text-muted"></label>
+                                  @Html.DropDownListFor( c => c.School.TownId, Model.Towns, "-- Select Town --",
+                                    new {@class = "form-control"})
+                                
+                            </div>
+
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="School.SchoolLevel" class="text-muted"></label>
+                                @Html.DropDownListFor( c => c.School.SchoolLevelId, Model.SchoolLevels, "-- Select School Level --",
+                                    new {@class = "form-control"})
+                            </div>
+                        </div>
+                        @*<div class="col">
+                            <div class="form-group">
+                                <label asp-for="Parent.Nationality" class="text-muted"></label>                                
+                                @Html.DropDownListFor( c => c.Parent.NationalityId, Model.Nationalities, "-- Select Nationality --",
+                                    new {@class = "form-control"})
+
+                            </div>
+                            <div class="invalid-feedback">
+                                Please provide a valid zip.
+                            </div>
+                        </div>*@
+                    </div>
+                    @*<div class="form-row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label asp-for="Parent.IdNumber" class="text-muted"></label>
+                                <input asp-for="Parent.IdNumber" type="text" class="form-control" />        
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label asp-for="Parent.Race" class="text-muted"></label>
+                                @Html.DropDownListFor( c => c.Parent.RaceId, Model.Races, "-- Select Race --",
+                                    new {@class = "form-control"})
+                                
+                            </div>
+                            <div class="invalid-feedback">
+                                Please provide a valid zip.
+                            </div>
+                        </div>
+                    </div>*@
+        
+                    @*<div class="form-row">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label asp-for="Parent.Language" class="text-muted"></label>
+                                <label asp-for="Parent.Race" class="text-muted"></label>
+                                @Html.DropDownListFor( c => c.Parent.LanguageId, Model.Languages, "-- Select Home Language --",
+                                    new {@class = "form-control"})
+        
+                            </div>
+                        </div>
+                    </div>*@
+                   
+                 @*   <div class="form-row">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="language" class="text-muted"><strong>Proof of ID</strong></label>
+                                <input type="file" class="" id="language" 
+                                        />
+        
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="language" class="text-muted"><strong>Proof of Address</strong></label>
+                                <input type="file" class="" id="language" 
+                                        />
+        
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+        
+                  @*  <h4 class="text-info text-center text-uppercase mb-3">Residential Address</h4>
+                    
+                   <div class="form-row">
+        
+                        <div class="col-6">
+                            <div class="form-group">
+        
+                                <label for="street" class="text-muted"><strong>Street</strong></label>
+                                <input type="text" class="form-control mb-3" id="street"
+                                        />
+                                
+                            </div>
+                    
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="complex" class="text-muted"><strong>Building/Complex</strong></label>
+                                <input type="text" class="form-control mb-3" id="complex"
+                                        />
+                        
+                            </div>
+                        </div>
+                    </div>
+        
+                    
+                    <div class="form-row">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="suburb" class="text-muted"><strong>Suburb</strong></label>
+                                <input type="text" class="form-control mb-3" id="suburb"
+                                        />
+                            </div>
+                        </div>
+        
+                        <div class="col-4">
+                            <label for="town" class="text-muted"><strong>City/Town</strong></label>
+                            <input type="text" class="form-control mb-3" id="town"
+                                    />    
+                        </div>
+                        
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="postal" class="text-muted"><strong>Postal Code</strong></label>
+                                <input type="text" class="form-control" id="postal"
+                                        />
+                            </div>    
+                        </div>
+                        
+                    </div>
+        
+                    <div class="form-row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="province" class="text-muted"><strong>Province</strong></label>
+                                <input type="text" placeholder="Free State" disabled class="form-control" id="province"
+                                        />
+                            </div>
+                        </div>
+                    </div> 
+                    *@
+                    
+                    <div class="form-row">
+                        
+                        <div class="col">
+                            <div class="form-group">
+                                <label asp-for="School.Email" class="text-muted"></label>
+                                <input asp-for="School.Email" type="text" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label asp-for="School.Password" class="text-muted"></label>
+                                <input asp-for="School.Password" type="password" class="form-control"/>
+                            </div>
+                        </div>
+                    
+                    </div>
+        
+                    @*<div class="form-row">
+                        
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label asp-for="Parent.PhoneNumber" class="text-muted"></label>
+                                <input asp-for="Parent.PhoneNumber" type="text" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label asp-for="Parent.Password" class="text-muted"></label>
+                                <input asp-for="Parent.Password" type="text" class="form-control" />
+                            </div>
+                        </div>*@
+                        @*<div class="col">
+                            <div class="form-group">
+                                <label for="confirm_password" class="text-muted"><strong>Confirm Password</strong></label>
+                                <input type="password" class="form-control" id="confirm_password"
+                                        />
+                            </div>
+                        </div>*@
+                    @*</div>*@                   
+                </div>
+                <!-- Card Footer -->
+                <div class="card-footer m-0">
+                    <button type="submit" class="btn btn-dark btn-block"><i class="fa fa-user-plus"></i> Register School</button>
+                </div>
+            </form>
+        </div>
+        
+    </div>
+
+@section Scripts{
+    <script src="~/js/school.js"></script>
+}

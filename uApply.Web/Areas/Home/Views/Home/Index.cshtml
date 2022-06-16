@@ -1,0 +1,62 @@
+﻿
+@model IEnumerable<uApply.Data.Models.Location.District>
+@{
+    ViewData["Title"] = "Home Page";
+    <link rel="stylesheet" href="~/css/site.css" />
+}
+
+<div class="text-center"> 
+     <div class="card shadow p-12">
+        <h4>WELCOME TO <u>UAPPLY</u> ONLINE SCHOOL APPLICATION</h4>
+    </div>
+</div>
+
+<div class="image">
+    <img src="~/img/hero.jpg" alt="Landing Picture" />
+</div>
+
+
+@*@foreach(var d in Model)
+{
+    <h3 class="align-content-center text-muted">@d.Name | @d.Province.Name</h3>
+}*@
+
+
+
+       <div class="features">
+           <div class="card shadow p-12">
+            <div class="card m-3 p-3 feature-item">
+                <div class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-building" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd" d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694 1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z"/>
+                      <path d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z"/>
+                    </svg>                    
+                </div>
+                <p class="feature-header">100+ Schools</p>
+                <p style="font-size:14px">There are more choices of the best schools to choose from.</p>
+            </div>
+            </div>
+            <div class="card shadow p-12">
+            <div class="card m-3 p-3 feature-item">
+                <div class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30S" fill="currentColor" class="bi bi-key" viewBox="0 0 16 16">
+                      <path d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z"/>
+                      <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                    </svg>
+                </div>
+                <p class="feature-header">Free & Easy Acces</p>
+                <p style="font-size:14px">Find a school for your child free ans easy.</p>
+            </div>
+            </div>
+            <div class="card shadow p-12">
+            <div class="card m-3 p-3 feature-item">
+                <div class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16">
+                     <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
+                    </svg>
+          </div>
+                <p class="feature-header">Very Convenient</p>
+                <p style="font-size:14px">This system is very convinient and sustainable.</p>
+            </div>        
+            </div>        
+        </div>
